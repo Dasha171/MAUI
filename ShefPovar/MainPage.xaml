@@ -1,0 +1,440 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ShefPovar.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="Black">
+    <ScrollView>
+        <StackLayout>
+            <StackLayout>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition Width="1250" />
+                    </Grid.ColumnDefinitions>
+                    <Frame
+                        Grid.Column="0"
+                        BackgroundColor="#1e1a30"
+                        HorizontalOptions="Start"
+                        WidthRequest="200">
+                        <StackLayout>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="200" />
+                                    <RowDefinition Height="100" />
+                                    <RowDefinition Height="50" />
+                                    <RowDefinition Height="400" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150" />
+                                </Grid.ColumnDefinitions>
+                                <Image
+                                    Grid.Row="0"
+                                    HeightRequest="200"
+                                    SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                                    Source="https://i.pinimg.com/564x/99/cc/f0/99ccf008f31cc4c57d65e4e8fe8679bf.jpg" />
+                                <Button
+                                    Grid.Row="1"
+                                    Clicked="Button_Clicked"
+                                    HeightRequest="20"
+                                    Text="Блюда" />
+                                <Button
+                                    Grid.Row="2"
+                                    Clicked="Button_Clicked_1"
+                                    HeightRequest="20"
+                                    Text="Ингредиенты" />
+                                <Button
+                                    Grid.Row="3"
+                                    Margin="0,250,0,0"
+                                    Clicked="Exit_Button"
+                                    HeightRequest="20"
+                                    Text="Выход" />
+                            </Grid>
+                        </StackLayout>
+                    </Frame>
+                    <!--  1 Stack  -->
+                    <StackLayout
+                        x:Name="stack1"
+                        Grid.Column="1"
+                        Margin="35"
+                        IsVisible="False">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="300" />
+                                <ColumnDefinition Width="300" />
+                                <ColumnDefinition Width="300" />
+                                <ColumnDefinition Width="100" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                FontAttributes="Bold"
+                                FontSize="23"
+                                Text="Список блюд"
+                                TextColor="White" />
+                            <SearchBar
+                                x:Name="Search2"
+                                Grid.Column="1"
+                                CancelButtonColor="#6e00ad"
+                                Placeholder="Поиск"
+                                PlaceholderColor="#7a7a7a"
+                                TextChanged="SearchButton2"
+                                TextColor="White" />
+                            <Picker Margin="30,0,0,0" Grid.Column="2" Title="Выберите категорию" SelectedIndexChanged="CategoryPicker_SelectedIndexChanged">
+                                <Picker.ItemsSource>
+                                    <x:Array Type="{x:Type x:String}">
+                                        <x:String>Все</x:String>
+                                        <x:String>Десерт</x:String>
+                                        <x:String>Супы</x:String>
+                                        <x:String>Мясные блюда</x:String>
+                                    </x:Array>
+                                </Picker.ItemsSource>
+                            </Picker>
+                            <Button
+                                Grid.Column="3"
+                                Margin="70,0,0,0"
+                                Clicked="Button_Clicked_5"
+                                Text="Добавить"
+                                WidthRequest="100" />
+                        </Grid>
+                        <ListView
+                            x:Name="Colll"
+                            Margin="0,50,0,0"
+                            ItemsSource="{Binding Bluda}">
+                            <ListView.Header>
+                                <Grid BackgroundColor="#1e1a30">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="45" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="300" />
+                                        <ColumnDefinition Width="200" />
+                                        <ColumnDefinition Width="500" />
+                                        <ColumnDefinition Width="200" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label
+                                        Grid.Column="0"
+                                        Margin="0,10,0,0"
+                                        Text="Название"
+                                        TextColor="White" />
+                                    <Label
+                                        Grid.Column="1"
+                                        Margin="0,10,0,0"
+                                        Text="Описание"
+                                        TextColor="White" />
+                                    <Label
+                                        Grid.Column="2"
+                                        Margin="50,10,0,0"
+                                        Text="Цена"
+                                        TextColor="White" />
+                                    <Label
+                                        Grid.Column="3"
+                                        Margin="-25,10,0,0"
+                                        Text="Удалить"
+                                        TextColor="White" />
+                                </Grid>
+                            </ListView.Header>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid Margin="0,20,0,0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="100" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="300" />
+                                                <ColumnDefinition Width="200" />
+                                                <ColumnDefinition Width="200" />
+                                                <ColumnDefinition Width="300" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label
+                                                Grid.Column="0"
+                                                Text="{Binding Name}"
+                                                TextColor="White" />
+                                            <Image Grid.Column="1" Source="{Binding Description}" />
+                                            <Label
+                                                Grid.Column="2"
+                                                Margin="50,0,0,0"
+                                                Text="{Binding Price}"
+                                                TextColor="White" />
+                                            <Button
+                                                Grid.Column="3"
+                                                Margin="300,0,0,0"
+                                                Clicked="Button_Clicked_7"
+                                                HeightRequest="5"
+                                                Text="Удалить"
+                                                WidthRequest="100" />
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                    <!--  2 Stack  -->
+                    <StackLayout
+                        x:Name="stack2"
+                        Grid.Column="1"
+                        Margin="35"
+                        IsVisible="False">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="300" />
+                                <ColumnDefinition Width="300" />
+                                <ColumnDefinition Width="100" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                FontAttributes="Bold"
+                                FontSize="23"
+                                Text="Ингредиенты"
+                                TextColor="White" />
+                            <SearchBar
+                                x:Name="Search1"
+                                Grid.Column="1"
+                                CancelButtonColor="#6e00ad"
+                                Placeholder="Поиск"
+                                PlaceholderColor="#7a7a7a"
+                                TextChanged="SearchButton"
+                                TextColor="White" />
+                            <Button
+                                Grid.Column="2"
+                                Margin="50,0,0,0"
+                                Clicked="Button_Clicked_2"
+                                Text="Добавить"
+                                WidthRequest="100" />
+                        </Grid>
+                        <ListView
+                            x:Name="Coll"
+                            Margin="0,50,0,0"
+                            ItemsSource="{Binding Ingredients}">
+                            <ListView.Header>
+                                <Grid BackgroundColor="#1e1a30">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="45" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="300" />
+                                        <ColumnDefinition Width="300" />
+                                        <ColumnDefinition Width="250" />
+                                        <ColumnDefinition Width="220" />
+                                        <ColumnDefinition Width="100" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label
+                                        Grid.Column="0"
+                                        Margin="0,10,0,0"
+                                        Text="Название"
+                                        TextColor="White" />
+                                    <Label
+                                        Grid.Column="1"
+                                        Margin="0,10,0,0"
+                                        Text="{Binding TotalPrice, StringFormat='Общая сумма: {0:C}'}"
+                                        TextColor="White" />
+                                    <Label
+                                        Grid.Column="2"
+                                        Margin="0,10,0,0"
+                                        Text="Количество"
+                                        TextColor="White" />
+                                    <Label
+                                        Grid.Column="3"
+                                        Margin="0,10,0,0"
+                                        Text="Редактировать"
+                                        TextColor="White" />
+                                    <Label
+                                        Grid.Column="4"
+                                        Margin="0,10,0,0"
+                                        Text="Удалить"
+                                        TextColor="White" />
+                                </Grid>
+                            </ListView.Header>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid Margin="0,20,0,0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="300" />
+                                                <ColumnDefinition Width="300" />
+                                                <ColumnDefinition Width="200" />
+                                                <ColumnDefinition Width="250" />
+                                                <ColumnDefinition Width="100" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label
+                                                Grid.Column="0"
+                                                Text="{Binding Name}"
+                                                TextColor="White" />
+                                            <Label
+                                                Grid.Column="1"
+                                                Text="{Binding Price}"
+                                                TextColor="White" />
+                                            <Label
+                                                Grid.Column="2"
+                                                Text="{Binding Kolv}"
+                                                TextColor="White" />
+                                            <Button
+                                                Grid.Column="3"
+                                                Clicked="Button_Clicked_3"
+                                                Text="Редактировать"
+                                                WidthRequest="150" />
+                                            <Button
+                                                Grid.Column="4"
+                                                Clicked="Button_Clicked_4"
+                                                Text="Удалить"
+                                                WidthRequest="100" />
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="100" />
+                            </Grid.ColumnDefinitions>
+                            <Button
+                                Grid.Column="0"
+                                Clicked="Button_Back_Clicked"
+                                Text="Назад"
+                                WidthRequest="100" />
+                            <Button
+                                Grid.Column="1"
+                                Margin="20,0,0,0"
+                                Clicked="Button_Forward_Clicked"
+                                Text="Вперед"
+                                WidthRequest="100" />
+                        </Grid>
+                    </StackLayout>
+
+                    <StackLayout
+                        x:Name="stack3"
+                        Grid.Column="1"
+                        Margin="35"
+                        IsVisible="False">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="300" />
+                                <ColumnDefinition Width="300" />
+                                <ColumnDefinition Width="100" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                FontAttributes="Bold"
+                                FontSize="23"
+                                Text="Ингредиенты"
+                                TextColor="White" />
+                            <SearchBar
+                                Grid.Column="1"
+                                CancelButtonColor="#6e00ad"
+                                Placeholder="Поиск"
+                                PlaceholderColor="#7a7a7a"
+                                TextColor="White" />
+                            <Button
+                                Grid.Column="2"
+                                Margin="50,0,0,0"
+                                Text="Добавить"
+                                WidthRequest="100" />
+                        </Grid>
+                        <ListView
+                            x:Name="Coll3"
+                            Margin="0,50,0,0"
+                            ItemsSource="{Binding Ingredients}">
+                            <ListView.Header>
+                                <Grid BackgroundColor="#1e1a30">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="45" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="300" />
+                                        <ColumnDefinition Width="300" />
+                                        <ColumnDefinition Width="250" />
+                                        <ColumnDefinition Width="220" />
+                                        <ColumnDefinition Width="100" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label
+                                        Grid.Column="0"
+                                        Margin="0,10,0,0"
+                                        Text="Название"
+                                        TextColor="White" />
+                                    <Label
+                                        Grid.Column="1"
+                                        Margin="0,10,0,0"
+                                        Text="{Binding TotalPrice, StringFormat='Общая сумма: {0:C}'}"
+                                        TextColor="White" />
+                                    <Label
+                                        Grid.Column="2"
+                                        Margin="0,10,0,0"
+                                        Text="Количество"
+                                        TextColor="White" />
+                                    <Label
+                                        Grid.Column="3"
+                                        Margin="0,10,0,0"
+                                        Text="Редактировать"
+                                        TextColor="White" />
+                                    <Label
+                                        Grid.Column="4"
+                                        Margin="0,10,0,0"
+                                        Text="Удалить"
+                                        TextColor="White" />
+                                </Grid>
+                            </ListView.Header>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid Margin="0,20,0,0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="300" />
+                                                <ColumnDefinition Width="300" />
+                                                <ColumnDefinition Width="200" />
+                                                <ColumnDefinition Width="250" />
+                                                <ColumnDefinition Width="100" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label
+                                                Grid.Column="0"
+                                                Text="{Binding Name}"
+                                                TextColor="White" />
+                                            <Label
+                                                Grid.Column="1"
+                                                Text="{Binding Price}"
+                                                TextColor="White" />
+                                            <Label
+                                                Grid.Column="2"
+                                                Text="{Binding Kolv}"
+                                                TextColor="White" />
+                                            <Button
+                                                Grid.Column="3"
+                                                Clicked="Button_Clicked_3"
+                                                Text="Редактировать"
+                                                WidthRequest="150" />
+                                            <Button
+                                                Grid.Column="4"
+                                                Clicked="Button_Clicked_4"
+                                                Text="Удалить"
+                                                WidthRequest="100" />
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="100" />
+                            </Grid.ColumnDefinitions>
+                            <Button
+                                Grid.Column="0"
+                                Clicked="Button_Back_Clicked"
+                                Text="Назад"
+                                WidthRequest="100" />
+                            <Button
+                                Grid.Column="1"
+                                Margin="20,0,0,0"
+                                Clicked="Button_Forward_Clicked"
+                                Text="Вперед"
+                                WidthRequest="100" />
+                        </Grid>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,1 @@
+D:\VStudio\мауи\ShefPovar\ShefPovar.csproj;x64

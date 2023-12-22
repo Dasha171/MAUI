@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ShefPovar.BludoEdit"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="Black">
+    <StackLayout Margin="40,50,50,0">
+        <Label
+            Margin="0,0,0,20"
+            FontAttributes="Bold"
+            FontSize="23"
+            Text="Добавить блюдо"
+            TextColor="White" />
+        <Picker
+            Title="Выберите категорию"
+            Grid.Column="2"
+            Margin="30,0,0,0">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Десерт</x:String>
+                    <x:String>Супы</x:String>
+                    <x:String>Мясные блюда</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+
+        <Label Text="Название блюда:" />
+        <Entry x:Name="EntryName" Placeholder="Введите название" />
+
+        <Label Text="Описание блюда:" />
+        <Entry x:Name="EntryDescription" Placeholder="Введите описание" />
+        <Label Text="Цена :" />
+        <Entry x:Name="EntryPrice" Placeholder="Введите цену" />
+
+        <Button
+            Margin="50"
+            Clicked="SaveButton_Clicked"
+            HorizontalOptions="End"
+            Text="Сохранить" />
+    </StackLayout>
+</ContentPage>

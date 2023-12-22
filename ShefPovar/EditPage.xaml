@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ShefPovar.EditPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <StackLayout>
+        <Label
+            Margin="0,20,0,20"
+            FontSize="Large"
+            HorizontalOptions="CenterAndExpand"
+            Text="Редактирование ингредиента" />
+
+        <Entry
+            x:Name="IngredientNameEntry"
+            Margin="10"
+            Placeholder="Название" />
+        <Entry
+            x:Name="IngredientPriceEntry"
+            Margin="10"
+            Placeholder="Цена" />
+        <Entry
+            x:Name="IngredientKolvEntry"
+            Margin="10"
+            Placeholder="Количество" />
+
+        <Button
+            Margin="50"
+            HorizontalOptions="End"
+            Clicked="UpdateIngredient_Clicked"
+            Text="Сохранить изменения" />
+    </StackLayout>
+</ContentPage>
